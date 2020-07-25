@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+main {
+    margin: 200px auto;
+    width: 800px;
+    height: 350px;
+    background: pink;
+}
+
+h4 {
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.tabsbox {
+    margin: 20px 0;
+    width: 100%;
+    height: 250px;
+    border: powderblue 1px solid;
+    box-sizing: border-box;
+}
+
+.tabsbox nav {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+.tabsbox nav li {
+    position: relative;
+    float: left;
+    width: 80px;
+    height: 40px;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    line-height: 40px;
+}
+
+.tabsbox nav .liactive {
+    border-bottom: none;
+}
+
+.tabsbox nav li .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background: #eeeeee;
+    border-radius: 0 0 0 15px;
+}
+
+.tabsbox nav .tabadd {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background: #eeeeee;
+    border: 1px solid #000;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 13px;
+    cursor: pointer;
+}
