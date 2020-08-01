@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo1</title>
+</head>
+<style>
+    #app {
+        overflow: hidden;
+        width: 230px;
+        height: 35px;
+        border: 1px solid #c1c1c1;
+        margin: 200px auto;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
+    }
+    
+    button {
+        width: 70px;
+        height: 35px;
+        background: #c1c1c1;
+        border: none;
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+        outline: none;
+    }
+    
+    span {
+        display: inline-block;
+        width: 80px;
+        background: white;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <!-- <button @click="num--">-</button>
+        <span>{{num}}</span>
+        <button @click="num++">+</button> -->
+        <button @click="sub">-</button>
+        <span>{{num}}</span>
+        <button @click="add">+</button>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function() {
+                    // console.log(2);
+                    if (this.num >= 20) {
+                        alert("最大了");
+                    } else {
+                        this.num++;
+                    }
+                },
+                sub: function() {
+                    // console.log(3);
+                    if (this.num <= 0) {
+                        alert("最小了");
+                    } else {
+                        this.num--;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
