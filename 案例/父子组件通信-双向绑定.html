@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 要直接显示可以用props中的数据，但是要修改的话要用data里面的  -->
+    <!-- 根据props里面的来初始化data里面的,所以修改时改动的是data里面的,props里面的值不会改变 -->
+    <!-- 若想要通过子组件修改父组件的数据,必须要直接修改父组件(通过$emit),不可以动props里面的 -->
+    <!-- 就是props里面的数据不可以随便动,毕竟它是来自父组件 -->
+
+
+    <div id="app">
+        <!-- 要直接显示可以用props中的数据，但是要修改的话要用data里面的 -->
+        <cpn :num1="number1" :num2="number2" @number1change="number1change" @number2change="number2change"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>props:{{num1}}</h2>
+            <h2>组件data:{{dnum1}}</h2>
+            <!-- 修改时改动的是组件data里面的,props里面的值不会改变 -->
+            <!-- <input type="text" v-model="dnum1"> -->
+            <!-- <input type="text" :value="dnum1" @input="dnum1=$event.target.value"> -->
+            <input type="text" :value="dnum1" @input="dnum1Input">
+
+
+            <h2>props:{{num2}}</h2>
+            <h2>组件data:{{dnum2}}</h2>
+            <input type="text" :value="dnum2" @input="dnum2Input">
+        </div>
+    </template>
+
+</body>
+<script src="vue.js"></script>
+<script>
+    const cpn = {
+        template: '#cpn',
+        props: {
+            num1: Number,
+            num2: Number
+        },
+        data() {
+            return {
+                // 根据props里面的来初始化data里面的
+                dnum1: this.num1,
+                dnum2: this.num2
+            }
+        },
+        methods: {
+            dnum1Input(event) {
+                // 1、讲input中是value赋值给的dnum1
+                this.dnum1 = event.target.value
+
+                // 2、为了父组件的值也跟着修改,发出一个事件
+                this.$emit('number1change', this.dnum1)
+
+                // 3、同时修饰的dnum1和number1的值
+                this.dnum2 = this.dnum1 * 100
+                this.$emit('number2change', this.dnum2)
+            },
+            dnum2Input(event) {
+                this.dnum2 = event.target.value
+                this.$emit('number2change', this.dnum2)
+                this.dnum1 = this.dnum2 / 100
+                this.$emit('number1change', this.dnum1)
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            number1: 1,
+            number2: 2
+        },
+        components: {
+            cpn
+        },
+        methods: {
+            number1change(value) {
+                // 默认传过来的为字符串
+                this.number1 = parseFloat(value)
+            },
+            number2change(value) {
+                // 默认传过来的为字符串
+                this.number2 = parseFloat(value)
+            }
+        }
+    })
+</script>
+
+</html>

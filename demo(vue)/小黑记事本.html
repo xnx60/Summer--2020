@@ -124,6 +124,7 @@
         <div class="main">
             <!-- 输入框 -->
             <header>
+                <!-- 文本框中v-model绑定的是文本框里面的值（提交到后台的值/value里面的值），且v-model具有优先权，有v-model则value不显示 -->
                 <input v-model="inputValue" @keyup.enter="add" type="text" />
             </header>
             <!-- 列表区域 -->
@@ -146,6 +147,11 @@
             </footer>
         </div>
     </div>
+    <form>
+        <input type="radio" name="sex" value="whh" checked>Male
+        <br>
+        <input type="radio" name="sex" value="female">Female
+    </form>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="vue.js"></script>
     <script>
@@ -153,7 +159,7 @@
             el: "#app",
             data: {
                 list: ["写代码", "记笔记"],
-                inputValue: "好好学习"
+                inputValue: ""
             },
             methods: {
                 add: function() {
